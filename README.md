@@ -151,10 +151,10 @@ factory bot
 `rails g model Mentor name:string time_zone:string`
 `rails g model Booking date_time:datetime call_reason:string mentor:references`
 
-* By adding todo: references we are telling the generator to set up an association with the Mentor model.
+* By adding references we are telling the generator to set up an association with the Mentor model.
   This will:
 
-  * Add a foreign key column todo_id to the items table
+  * Add a foreign key column mentor_id to the bookings table
   * Setup a belongs_to association in the Item model
 
 `rails db:migrate`
@@ -192,19 +192,22 @@ include it as shared module for all request specs in the RSpec configuration blo
  Rescue this exception and return 404
 * Fix all failing tests via TDD
 * Now we can make requests to the API. We can use for example [httpie](https://httpie.io/) as HTTP client.
-
-# GET /mentors
-$ http :3000/mentors
-# POST /mentors
-$ http POST :3000/mentors name=Mark time_zone=London/UK
-# PUT /mentors/:id (to update name)
-$ http PUT :3000/mentors/1 name=Elon
-# DELETE /mentors/:id
-$ http DELETE :3000/mentors/1
-
+  ```
+  # GET /mentors
+  $ http :3000/mentors
+  # POST /mentors
+  $ http POST :3000/mentors name=Mark time_zone=London/UK
+  # PUT /mentors/:id (update name)
+  $ http PUT :3000/mentors/1 name=Elon
+  # DELETE /mentors/:id
+  $ http DELETE :3000/mentors/1
+  ```
 
 ##### 6. Controllers: TDD booking_spec
-
+* Add requests booking specs
+* Add bookings controller
+* Fix factory booking issues
+* Fix rubocop offenses
 <!-- ##### Configuration
 ### steps to get the application up and running
 ##### database creation & initialization

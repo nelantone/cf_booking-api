@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_mentor
-  before_action :set_mentor_booking, only: [:show, :update, :destroy]
+  before_action :set_mentor_booking, only: %i[show update destroy]
 
   # GET /mentors/:mentor_id/bookings
   def index

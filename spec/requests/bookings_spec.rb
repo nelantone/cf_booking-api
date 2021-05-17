@@ -13,7 +13,7 @@ RSpec.describe 'bookings API' do
 
     context 'when mentor exists' do
       it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns all mentor bookings' do
@@ -25,7 +25,7 @@ RSpec.describe 'bookings API' do
       let(:mentor_id) { 0 }
 
       it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'returns a not found message' do
@@ -40,7 +40,7 @@ RSpec.describe 'bookings API' do
 
     context 'when mentor booking exists' do
       it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns the booking' do
@@ -52,7 +52,7 @@ RSpec.describe 'bookings API' do
       let(:id) { 0 }
 
       it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'returns a not found message' do
@@ -63,14 +63,16 @@ RSpec.describe 'bookings API' do
 
   # Test suite for PUT /mentors/:mentor_id/bookings
   describe 'POST /mentors/:mentor_id/bookings' do
-    let(:valid_attributes) { { date_time: DateTime.new(2021,2,3,4,5,6),
-                               call_reason: 'Say hi!' } }
+    let(:valid_attributes) do
+      { date_time: DateTime.new(2021, 2, 3, 4, 5, 6),
+        call_reason: 'Say hi!' }
+    end
 
     context 'when request attributes are valid' do
       before { post "/mentors/#{mentor_id}/bookings", params: valid_attributes }
 
       it 'returns status code 201' do
-        expect(response).to have_http_status(201)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -78,7 +80,7 @@ RSpec.describe 'bookings API' do
       before { post "/mentors/#{mentor_id}/bookings", params: {} }
 
       it 'returns status code 422' do
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'returns a failure message' do
@@ -95,7 +97,7 @@ RSpec.describe 'bookings API' do
 
     context 'when booking exists' do
       it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+        expect(response).to have_http_status(:no_content)
       end
 
       it 'updates the booking' do
@@ -108,7 +110,7 @@ RSpec.describe 'bookings API' do
       let(:id) { 0 }
 
       it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'returns a not found message' do
@@ -122,7 +124,7 @@ RSpec.describe 'bookings API' do
     before { delete "/mentors/#{mentor_id}/bookings/#{id}" }
 
     it 'returns status code 204' do
-      expect(response).to have_http_status(204)
+      expect(response).to have_http_status(:no_content)
     end
   end
 end

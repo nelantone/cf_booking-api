@@ -97,7 +97,7 @@ Create a booking calendar RESTful backend API to enable students to schedule a c
       belongs_to :mentor
     end
 
-    attr: date_time: datetime
+    attr: date_time: datetime, call_reason: string
     ```
 - **Scenario 1**
 Show from a specific day time slots(as a list from 23-00, 00-01 * 24hr slots)
@@ -144,8 +144,13 @@ Restful API:
 factory bot
 * guard `bundle exec guard init`
 * rubocop `.rubocop.yml` require `rubocop-rails` & `rubocop-rspec`
+* Fix rubocop offensess and add todo list for rubocop small issues.
 
+##### 3. Add models
+`rails g model Mentor name:string time_zone:string`
+`rails g model Booking date_time:datetime call_reason:string mentor:references`
 
+* By adding todo: references we are telling the generator to set up an association with the Mentor model.
 <!-- ##### Configuration
 ### steps to get the application up and running
 ##### database creation & initialization

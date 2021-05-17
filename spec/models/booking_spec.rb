@@ -8,7 +8,6 @@ RSpec.describe Booking, type: :model do
   it { should belong_to(:mentor) }
   # Validation test
   # ensure column name, date_time, call_reason is present before saving
-  it { should validate_presence_of(:name) }
   it { should validate_presence_of(:date_time) }
   it { should validate_presence_of(:call_reason) }
 end

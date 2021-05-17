@@ -169,9 +169,21 @@ factory bot
 `rails g controller Bookings`
 
 * We’re going to write **request specs**.
-**  As we are building an API application, this is exactly the kind of behavior we want from our tests.
-
-The official recommendation of the Rails team and the RSpec core team is to write request specs.
+** *The official recommendation of the Rails team and the RSpec core team is to write request specs*
+  </br>
+  * As we are building an API application, this is exactly the behavior we want from our tests, we want to hit the HTTP endpoints as opposed to controller specs which call methods directly.
+  </br>
+  * Add `spec/requests` folder and inside `mentors_spec` and `bookings_spec` files.
+  </br>
+  * Add the factory files `mentors` & `booking`s
+    </br>
+  * Add the database with a list of 2 mentor records with factories.
+    </br>
+  * Add a custom helper method json to parse the JSON response to a Ruby Hash for our tests:
+  `support/request_spec_helper` & respective `spec`.
+    </br>
+  * Enable in rails helper and comment out the support directory auto-loading and then
+include it as shared module for all request specs in the RSpec configuration block (Support directory is not autoloaded by default).
 
 <!-- ##### Configuration
 ### steps to get the application up and running

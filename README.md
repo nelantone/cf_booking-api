@@ -184,6 +184,15 @@ factory bot
     </br>
   * Enable in rails helper and comment out the support directory auto-loading and then
 include it as shared module for all request specs in the RSpec configuration block (Support directory is not autoloaded by default).
+    - We have a routing error
+* Define routes,for mentor resource with a nested bookings resource. This enforces the 1:m (one to many) route-associations.
+    - we fix the routing error
+    - we have a controller error
+* Define the mentors controller and add `json_response` helper method.
+ Rescue this exception and return 404
+* Fix all failing tests via TDD
+
+
 
 <!-- ##### Configuration
 ### steps to get the application up and running

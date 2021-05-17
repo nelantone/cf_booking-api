@@ -146,11 +146,17 @@ factory bot
 * rubocop `.rubocop.yml` require `rubocop-rails` & `rubocop-rspec`
 * Fix rubocop offensess and add todo list for rubocop small issues.
 
-##### 3. Add models
+##### 3. Add and migrate Mentor and Booking models
 `rails g model Mentor name:string time_zone:string`
 `rails g model Booking date_time:datetime call_reason:string mentor:references`
 
 * By adding todo: references we are telling the generator to set up an association with the Mentor model.
+  This will:
+
+  * Add a foreign key column todo_id to the items table
+  * Setup a belongs_to association in the Item model
+* `rails db:migrate`
+
 <!-- ##### Configuration
 ### steps to get the application up and running
 ##### database creation & initialization

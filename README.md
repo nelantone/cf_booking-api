@@ -127,7 +127,7 @@ for ("-0300") we can somehow use something similar as `formatted_offset`.
 
 ### Process
 
-#### 1. Start project and init commit.
+##### 1. Start project and init commit.
 Restful API:
 
 * `rails new cf_booking-api --api  -T`
@@ -136,7 +136,14 @@ Restful API:
 
 </br>
 
-* Add the specific dependencies we will use from start.
+* Add the specific dependencies we will use from start and commit changes.
+
+##### 2. Add folders, files and set/initialize dependencies
+* rspec `rails generate rspec:install`
+* add `spec/rails_helper.rb` configuration for database cleaner, shoulda matchers and
+factory bot
+* guard `bundle exec guard init`
+* rubocop `.rubocop.yml` require `rubocop-rails` & `rubocop-rspec`
 
 
 <!-- ##### Configuration

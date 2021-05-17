@@ -192,6 +192,9 @@ include it as shared module for all request specs in the RSpec configuration blo
  Rescue this exception and return 404
 * Fix all failing tests via TDD
 * Now we can make requests to the API. We can use for example [httpie](https://httpie.io/) as HTTP client.
+
+* **Run `rails server`** inside the project.
+* on another console window also inside the project run:
   ```
   # GET /mentors
   $ http :3000/mentors
@@ -208,6 +211,23 @@ include it as shared module for all request specs in the RSpec configuration blo
 * Add bookings controller
 * Fix factory booking issues
 * Fix rubocop offenses
+
+Making requests to the API. via  HTTP client.
+** [httpie](https://httpie.io/) as example bellow:
+```
+## in case you need to create a mentor
+# POST /mentors
+$ http POST :3000/mentors name=Mark time_zone=London/UK
+
+# GET /mentors/:mentor_id/bookings
+$ http :3000/mentors/1/bookings
+# POST /mentors/:mentor_id/bookings
+$ http POST :3000/mentors/1/bookings call_reason='Say hi!' date_time='2021-02-03T04:05:06+00:00'
+# PUT /mentors/:mentor_id/bookings/:id
+$ http PUT :3000/mentors/1/bookings/1 call_reason='Say buh!'
+# DELETE /mentors/:mentor_id/bookings/1
+$ http DELETE :3000/mentors/1/bookings/1
+```
 <!-- ##### Configuration
 ### steps to get the application up and running
 ##### database creation & initialization

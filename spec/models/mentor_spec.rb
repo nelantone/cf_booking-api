@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Mentor, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # Association test
+  # ensure `Mentor` model has a `1:m` relationship with the `Booking` model
+  it { should have_many(:bookigs).dependent(:destroy) }
+  # Validation tests
+  # ensure columns `name` and `time_zone` are present before saving
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:time_zone) }
 end

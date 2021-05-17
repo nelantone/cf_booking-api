@@ -155,7 +155,10 @@ factory bot
 
   * Add a foreign key column todo_id to the items table
   * Setup a belongs_to association in the Item model
-* `rails db:migrate`
+
+`rails db:migrate`
+
+##### 4. TDD mentor_spec & booking_spec
 
 <!-- ##### Configuration
 ### steps to get the application up and running

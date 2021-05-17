@@ -145,6 +145,7 @@ factory bot
 * guard `bundle exec guard init`
 * rubocop `.rubocop.yml` require `rubocop-rails` & `rubocop-rspec`
 * Fix rubocop offensess and add todo list for rubocop small issues.
+* `bundle exec guard` is continuosly executed in the background to find rubocop ofensess and in case rspec tests are falining.
 
 ##### 3. Add and migrate Mentor and Booking models
 `rails g model Mentor name:string time_zone:string`
@@ -158,7 +159,19 @@ factory bot
 
 `rails db:migrate`
 
-##### 4. TDD mentor_spec & booking_spec
+##### 4. Models: TDD mentor_spec & booking_spec
+* Add shoulda-matchers from booking and mentor model
+* Make test failing
+* Fix booking and mentor models adding relations and validations
+
+##### 5. Controllers: TDD mentor_spec & booking_spec
+`rails g controller Models`
+`rails g controller Bookings`
+
+* We’re going to write **request specs**.
+**  As we are building an API application, this is exactly the kind of behavior we want from our tests.
+
+The official recommendation of the Rails team and the RSpec core team is to write request specs.
 
 <!-- ##### Configuration
 ### steps to get the application up and running

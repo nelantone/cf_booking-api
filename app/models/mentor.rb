@@ -5,5 +5,5 @@ class Mentor < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   # validations
-  validates_presence_of :name, :time_zone
+  validates :name, :time_zone, presence: true
 end

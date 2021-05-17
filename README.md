@@ -164,7 +164,7 @@ factory bot
 * Make test failing
 * Fix booking and mentor models adding relations and validations
 
-##### 5. Controllers: TDD mentor_spec & booking_spec
+##### 5. Controllers: TDD mentor_spec
 `rails g controller Models`
 `rails g controller Bookings`
 
@@ -191,8 +191,19 @@ include it as shared module for all request specs in the RSpec configuration blo
 * Define the mentors controller and add `json_response` helper method.
  Rescue this exception and return 404
 * Fix all failing tests via TDD
+* Now we can make requests to the API. We can use for example [httpie](https://httpie.io/) as HTTP client.
+
+# GET /mentors
+$ http :3000/mentors
+# POST /mentors
+$ http POST :3000/mentors name=Mark time_zone=London/UK
+# PUT /mentors/:id (to update name)
+$ http PUT :3000/mentors/1 name=Elon
+# DELETE /mentors/:id
+$ http DELETE :3000/mentors/1
 
 
+##### 6. Controllers: TDD booking_spec
 
 <!-- ##### Configuration
 ### steps to get the application up and running

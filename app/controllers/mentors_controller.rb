@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-  before_action :set_mentor, only: [:show, :update, :destroy]
+  before_action :set_mentor, only: %i[show update destroy]
 
   # GET /mentors
   def index

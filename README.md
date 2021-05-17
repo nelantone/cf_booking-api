@@ -11,6 +11,51 @@
   * **'factory_bot_rails'** - 'factory_bot' is a fixtures replacement with a straightforward definition syntax using factories, in this case provides integration with rails.
   * **'faker'**  - a Data::Faker to easily generate fake data: names, addresses etc...
   * **'shoulda-matchers'** - provides RSpec- and Minitest-compatible one-liners to test common Rails functionality.
+#### Installation/Setup
+  1. Have installed `rails 6.1` and `ruby 3.0`
+  2. `bundle`
+  3. `rails db:create && rails db:migrate`
+
+#### Instructions for http request/endpoints and run the project:
+
+ Using for example [httpie](https://httpie.io/) as HTTP client.
+
+* Inside the project Run **`rails server`** .
+* on another console window also inside the project run:
+
+  * Test-endpoints for mentors
+  ```
+  # GET /mentors
+  $ http :3000/mentors
+  # POST /mentors
+  $ http POST :3000/mentors name=Mark time_zone=London/UK
+  # PUT /mentors/:id (update name)
+  $ http PUT :3000/mentors/1 name=Elon
+  # DELETE /mentors/:id
+  $ http DELETE :3000/mentors/1
+  ```
+  * Test-endpoints for mentors and respective bookings
+  ```
+  ## in case you need to create a mentor
+  # POST /mentors
+  $ http POST :3000/mentors name=Mark time_zone=London/UK
+
+  # GET /mentors/:mentor_id/bookings
+  $ http :3000/mentors/1/bookings
+  # POST /mentors/:mentor_id/bookings
+  $ http POST :3000/mentors/1/bookings call_reason='Say hi!' date_time='2021-02-03T04:05:06+00:00'
+  # PUT /mentors/:mentor_id/bookings/:id
+  $ http PUT :3000/mentors/1/bookings/1 call_reason='Say buh!'
+  # DELETE /mentors/:mentor_id/bookings/1
+  $ http DELETE :3000/mentors/1/bookings/1
+  ```
+
+### run test suite.
+* rspec tests:
+`bundle exec rspec`
+
+*  For control in code related changes you can keep running in a specific console-window:
+`guard`
 
 #### Task process, methods and design decision:
 
@@ -191,20 +236,7 @@ include it as shared module for all request specs in the RSpec configuration blo
 * Define the mentors controller and add `json_response` helper method.
  Rescue this exception and return 404
 * Fix all failing tests via TDD
-* Now we can make requests to the API. We can use for example [httpie](https://httpie.io/) as HTTP client.
-
-* **Run `rails server`** inside the project.
-* on another console window also inside the project run:
-  ```
-  # GET /mentors
-  $ http :3000/mentors
-  # POST /mentors
-  $ http POST :3000/mentors name=Mark time_zone=London/UK
-  # PUT /mentors/:id (update name)
-  $ http PUT :3000/mentors/1 name=Elon
-  # DELETE /mentors/:id
-  $ http DELETE :3000/mentors/1
-  ```
+* Now we can make mentor requests to the API(see Above *instructions for http request/endpoints*: ).
 
 ##### 6. Controllers: TDD booking_spec
 * Add requests booking specs
@@ -212,24 +244,7 @@ include it as shared module for all request specs in the RSpec configuration blo
 * Fix factory booking issues
 * Fix rubocop offenses
 
-Making requests to the API. via  HTTP client.
-** [httpie](https://httpie.io/) as example bellow:
-```
-## in case you need to create a mentor
-# POST /mentors
-$ http POST :3000/mentors name=Mark time_zone=London/UK
+* Now we can make booking requests to the API(see Above *instructions for http request/endpoints*: ).
 
-# GET /mentors/:mentor_id/bookings
-$ http :3000/mentors/1/bookings
-# POST /mentors/:mentor_id/bookings
-$ http POST :3000/mentors/1/bookings call_reason='Say hi!' date_time='2021-02-03T04:05:06+00:00'
-# PUT /mentors/:mentor_id/bookings/:id
-$ http PUT :3000/mentors/1/bookings/1 call_reason='Say buh!'
-# DELETE /mentors/:mentor_id/bookings/1
-$ http DELETE :3000/mentors/1/bookings/1
-```
-<!-- ##### Configuration
-### steps to get the application up and running
-##### database creation & initialization
-##### run test suite
-##### Enpoints -->
+
+#### 7. Find time slot scenarios...

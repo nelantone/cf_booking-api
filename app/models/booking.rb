@@ -12,9 +12,9 @@ class Booking < ApplicationRecord
 
   # To be sure that `date_time` is free, unique and we can update the existing one
   def free_time_frame?
-    started_booking_time = Booking.where(date_time: self.date_time)
+    started_booking_time = Booking.where(date_time: date_time)
 
-    if started_booking_time.present? && !(started_booking_time.ids.first == self.id)
+    if started_booking_time.present? && (started_booking_time.ids.first != id)
       errors.add(:date_time, 'Sorry, this hour is already booked')
     end
   end

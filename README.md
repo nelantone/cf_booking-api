@@ -227,13 +227,13 @@ include it as shared module for all request specs in the RSpec configuration blo
 
 * Now we can make booking requests to the API(see Above *instructions for http request/endpoints*: ).
 
-
-#### 7. Find booking scenarios and rename time_date to start_time...
-
 - **Scenario 1**
 Show from a specific day time slots(as a list from 23-00, 00-01 * 24hr slots)
-Show time slots booked.
+Show time slots booked. 
 </br>
+
+
+#### 7. Find valid/not_valid booking scenarios and rename Booking time_date to start_time...
 
 - **When  the student click on a date:**
 
@@ -252,6 +252,11 @@ Show time slots booked.
     - Click on date
     - Fill in reason
     - Error. (this time slot is not available)
+
+  - **Rename Booking time_date to start_time**
+    - is better and more self explanatory to have an attribute as `start_time` instead `date_time`
+
+  - **Rename `Response` to `ResponseJsonHandler`** to have clarity on the helper name.
 
 #### 8. Timezone and add Mentor as User class and add service token/jwt..
 - Deal with timezone by convention `Time.current.utc.iso8601` working with APIs

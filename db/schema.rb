@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_094347) do
+ActiveRecord::Schema.define(version: 2021_05_26_100059) do
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "date_time"
+    t.datetime "start_time"
     t.string "call_reason"
     t.integer "mentor_id", null: false
     t.datetime "created_at", precision: 6, null: false

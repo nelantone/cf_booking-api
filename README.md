@@ -1,3 +1,7 @@
+## REST API Booking Calendar
+
+Booking calendar RESTful backend API to enable students to schedule a call with the mentors and document the API endpoints for the Front-end developers.
+
 ### Versions:
 **Ruby 3.0**
 **Rails 6.1.3**
@@ -43,7 +47,7 @@
   # GET /mentors/:mentor_id/bookings
   $ http :3000/mentors/1/bookings
   # POST /mentors/:mentor_id/bookings
-  $ http POST :3000/mentors/1/bookings call_reason='Say hi!' date_time='2021-02-03T04:05:06+00:00'
+  $ http POST :3000/mentors/1/bookings call_reason='Say hi!' start_time='2021-02-03T04:05:06+00:00'
   # PUT /mentors/:mentor_id/bookings/:id
   $ http PUT :3000/mentors/1/bookings/1 call_reason='Say buh!'
   # DELETE /mentors/:mentor_id/bookings/1
@@ -116,10 +120,11 @@ Create a booking calendar RESTful backend API to enable students to schedule a c
 
 
 ##### Examples:
+
   * First approach:
       - Mentor, booking and student models in a rails API.
       Mentor has many bookings, booking belongs to mentor and student. Do Students have many  bookings?  Do we really need a student model?
-
+</br>
   * **Current approach:**
     - Mentor has many bookings, and booking belongs to menor. This is how I will proceed and then add the user-student as an JWT access-token-session.
 
@@ -144,30 +149,6 @@ Create a booking calendar RESTful backend API to enable students to schedule a c
 
     attr: date_time: datetime, call_reason: string
     ```
-- **Scenario 1**
-Show from a specific day time slots(as a list from 23-00, 00-01 * 24hr slots)
-Show all time slots as
-booked: false, true
-</br>
-- **When  the student click on a date:**
-	- **Scenario 2**
-      - A time slot is booked? =>false
-      - Fill-in call-reason:
-      - Confirm call and receive a confirmation message
-  - **Scenario 3:**
-    - Send request, which request?
-    - A time slot is booked? =>  true
-    - Error(this time slot is not available) * there is no-call-reason.
-
-  - **Alternative scenario 3:**
-    - Click on date
-    - Fill in reason
-    - Error. (this time slot is not available)
-
-- Deal with timezone issues? by convention `Time.current.utc.iso8601` working with APIs
-for ("-0300") we can somehow use something similar as `formatted_offset`.
-
-- Add http-requests and Authenticate User as service token/jwt.
 
 
 ### Process
@@ -246,5 +227,41 @@ include it as shared module for all request specs in the RSpec configuration blo
 
 * Now we can make booking requests to the API(see Above *instructions for http request/endpoints*: ).
 
+- **Scenario 1**
+Show from a specific day time slots(as a list from 23-00, 00-01 * 24hr slots)
+Show time slots booked. 
+</br>
 
-#### 7. Find time slot scenarios...
+
+#### 7. Find valid/not_valid booking scenarios and rename Booking time_date to start_time...
+
+- **When  the student click on a date:**
+
+	- **Scenario 2**
+      - A time slot is booked? => false
+      - Fill-in call-reason:
+      - Confirm call and receive a confirmation message
+
+  - First approach of Scenario 3:
+
+    - Send request, which request?
+    - A time slot is booked? =>  true
+    - Error(this time slot is not available) * there is no-call-reason.
+
+  - **Current approach scenario 3:**
+    - Click on date
+    - Fill in reason
+    - Error. (this time slot is not available)
+
+  - **Rename Booking time_date to start_time**
+    - is better and more self explanatory to have an attribute as `start_time` instead `date_time`
+
+  - **Rename `Response` to `ResponseJsonHandler`** to have clarity on the helper name.
+
+#### 8. Timezone and add Mentor as User class and add service token/jwt..
+- Deal with timezone by convention `Time.current.utc.iso8601` working with APIs
+
+* **Front-end** can be **on charge** to show the **current hour** from the mentor/student for ("-0300") we can somehow use something similar as `formatted_offset`.
+
+- `Class Mentor < User`
+- Add http-requests and Authenticate User as service `token/jwt`.

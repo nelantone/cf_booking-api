@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:date_time, :call_reason)
+    params.permit(:start_time, :call_reason)
   end
 
   def set_mentor

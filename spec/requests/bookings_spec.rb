@@ -64,7 +64,7 @@ RSpec.describe 'bookings API' do
   # Test suite for PUT /mentors/:mentor_id/bookings
   describe 'POST /mentors/:mentor_id/bookings' do
     let(:valid_attributes) do
-      { date_time: DateTime.new(2021, 2, 3, 4, 5, 6),
+      { start_time: DateTime.new(2021, 2, 3, 4, 5, 6),
         call_reason: 'Say hi!' }
     end
 
@@ -84,7 +84,7 @@ RSpec.describe 'bookings API' do
       end
 
       it 'returns a failure message' do
-        expect(response.body).to match(/Validation failed: Date time can't be blank/)
+        expect(response.body).to match(/Validation failed: Start time can't be blank/)
       end
     end
   end

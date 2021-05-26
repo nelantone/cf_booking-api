@@ -47,7 +47,7 @@ Booking calendar RESTful backend API to enable students to schedule a call with 
   # GET /mentors/:mentor_id/bookings
   $ http :3000/mentors/1/bookings
   # POST /mentors/:mentor_id/bookings
-  $ http POST :3000/mentors/1/bookings call_reason='Say hi!' date_time='2021-02-03T04:05:06+00:00'
+  $ http POST :3000/mentors/1/bookings call_reason='Say hi!' start_time='2021-02-03T04:05:06+00:00'
   # PUT /mentors/:mentor_id/bookings/:id
   $ http PUT :3000/mentors/1/bookings/1 call_reason='Say buh!'
   # DELETE /mentors/:mentor_id/bookings/1
@@ -228,7 +228,7 @@ include it as shared module for all request specs in the RSpec configuration blo
 * Now we can make booking requests to the API(see Above *instructions for http request/endpoints*: ).
 
 
-#### 7. Find booking scenarios...
+#### 7. Find booking scenarios and rename time_date to start_time...
 
 - **Scenario 1**
 Show from a specific day time slots(as a list from 23-00, 00-01 * 24hr slots)
@@ -253,10 +253,10 @@ Show time slots booked.
     - Fill in reason
     - Error. (this time slot is not available)
 
+#### 8. Timezone and add Mentor as User class and add service token/jwt..
 - Deal with timezone by convention `Time.current.utc.iso8601` working with APIs
 
 * **Front-end** can be **on charge** to show the **current hour** from the mentor/student for ("-0300") we can somehow use something similar as `formatted_offset`.
 
-#### 8. Add Mentor as User class and add service token/jwt..
 - `Class Mentor < User`
 - Add http-requests and Authenticate User as service `token/jwt`.
